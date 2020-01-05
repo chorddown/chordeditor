@@ -1,16 +1,7 @@
-//
-//  chordeditorTests.swift
-//  chordeditorTests
-//
-//  Created by Daniel Corn on 02.01.20.
-//  Copyright © 2020 Daniel Corn. All rights reserved.
-//
-
-import XCTest
 @testable import chordeditor
+import XCTest
 
 class chordeditorTests: XCTestCase {
-
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -26,9 +17,8 @@ class chordeditorTests: XCTestCase {
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measure {
+        measure {
             // Put the code you want to measure the time of here.
         }
     }
-
 }

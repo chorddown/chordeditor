@@ -1,14 +1,10 @@
-//
-//  Document.swift
-//  chordeditor
-//
-//  Created by Daniel Corn on 02.01.20.
-//  Copyright © 2020 Daniel Corn. All rights reserved.
-//
-
 import Cocoa
 
 class Document: NSDocument {
+    var source: String?
+    var viewController: ViewController? {
+        return windowControllers[0].contentViewController as? ViewController
+    }
 
     override init() {
         super.init()
@@ -22,23 +18,25 @@ class Document: NSDocument {
     override func makeWindowControllers() {
         // Returns the Storyboard that contains your Document window.
         let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
-        let windowController = storyboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("Document Window Controller")) as! NSWindowController
-        self.addWindowController(windowController)
+        if let windowController = storyboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("Document Window Controller")) as? NSWindowController {
+            addWindowController(windowController)
+        }
     }
 
-    override func data(ofType typeName: String) throws -> Data {
-        // Insert code here to write your document to data of the specified type, throwing an error in case of failure.
-        // Alternatively, you could remove this method and override fileWrapper(ofType:), write(to:ofType:), or write(to:ofType:for:originalContentsURL:) instead.
+    override func data(ofType _: String) throws -> Data {
+        // Save the text view contents to disk
+        guard let textView = viewController?.textView else {
+            throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
+        }
+
+        if let data = textView.string.data(using: .utf8) {
+            return data
+        }
+
         throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
     }
 
-    override func read(from data: Data, ofType typeName: String) throws {
-        // Insert code here to read your document from the given data of the specified type, throwing an error in case of failure.
-        // Alternatively, you could remove this method and override read(from:ofType:) instead.
-        // If you do, you should also override isEntireFileLoaded to return false if the contents are lazily loaded.
-        throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
+    override func read(from data: Data, ofType _: String) throws {
+        source = String(decoding: data, as: UTF8.self)
     }
-
-
 }
-

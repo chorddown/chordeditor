@@ -7,12 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6581F91123C1093900621E13 /* Merriweather-Regular.otf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6581F91023C1092A00621E13 /* Merriweather-Regular.otf */; };
+		6581F91323C12C1400621E13 /* Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6581F91223C12C1400621E13 /* Editor.swift */; };
 		658D313923BDEB9E00555BDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658D313823BDEB9E00555BDB /* AppDelegate.swift */; };
 		658D313B23BDEB9E00555BDB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658D313A23BDEB9E00555BDB /* ViewController.swift */; };
 		658D313D23BDEB9E00555BDB /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658D313C23BDEB9E00555BDB /* Document.swift */; };
 		658D313F23BDEB9F00555BDB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 658D313E23BDEB9F00555BDB /* Assets.xcassets */; };
 		658D314223BDEB9F00555BDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 658D314023BDEB9F00555BDB /* Main.storyboard */; };
 		658D314E23BDEBA000555BDB /* chordeditorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658D314D23BDEBA000555BDB /* chordeditorTests.swift */; };
+		658D315C23BE005700555BDB /* SourceColorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658D315B23BE005700555BDB /* SourceColorizer.swift */; };
+		658D316023BE0B4D00555BDB /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658D315F23BE0B4D00555BDB /* Util.swift */; };
+		658D316223BE15EB00555BDB /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658D316123BE15EB00555BDB /* Styles.swift */; };
+		658D316423BE3E5900555BDB /* AutoComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658D316323BE3E5900555BDB /* AutoComplete.swift */; };
+		65B2DB8323C0A39E0099F617 /* UtilTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2DB8223C0A39E0099F617 /* UtilTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,7 +32,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		6581F90B23C1086600621E13 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Fonts;
+			dstSubfolderSpec = 7;
+			files = (
+				6581F91123C1093900621E13 /* Merriweather-Regular.otf in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		6581F91023C1092A00621E13 /* Merriweather-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Merriweather-Regular.otf"; sourceTree = "<group>"; };
+		6581F91223C12C1400621E13 /* Editor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Editor.swift; sourceTree = "<group>"; };
 		658D313523BDEB9E00555BDB /* chordeditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chordeditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		658D313823BDEB9E00555BDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		658D313A23BDEB9E00555BDB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -37,6 +59,11 @@
 		658D314923BDEBA000555BDB /* chordeditorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = chordeditorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		658D314D23BDEBA000555BDB /* chordeditorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chordeditorTests.swift; sourceTree = "<group>"; };
 		658D314F23BDEBA000555BDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		658D315B23BE005700555BDB /* SourceColorizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceColorizer.swift; sourceTree = "<group>"; };
+		658D315F23BE0B4D00555BDB /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		658D316123BE15EB00555BDB /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		658D316323BE3E5900555BDB /* AutoComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoComplete.swift; sourceTree = "<group>"; };
+		65B2DB8223C0A39E0099F617 /* UtilTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +90,7 @@
 				658D313723BDEB9E00555BDB /* chordeditor */,
 				658D314C23BDEBA000555BDB /* chordeditorTests */,
 				658D313623BDEB9E00555BDB /* Products */,
+				658D315823BDF2DC00555BDB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,12 +107,18 @@
 			isa = PBXGroup;
 			children = (
 				658D313823BDEB9E00555BDB /* AppDelegate.swift */,
-				658D313A23BDEB9E00555BDB /* ViewController.swift */,
-				658D313C23BDEB9E00555BDB /* Document.swift */,
 				658D313E23BDEB9F00555BDB /* Assets.xcassets */,
-				658D314023BDEB9F00555BDB /* Main.storyboard */,
-				658D314323BDEB9F00555BDB /* Info.plist */,
+				658D316323BE3E5900555BDB /* AutoComplete.swift */,
 				658D314423BDEBA000555BDB /* chordeditor.entitlements */,
+				658D313C23BDEB9E00555BDB /* Document.swift */,
+				658D314323BDEB9F00555BDB /* Info.plist */,
+				658D314023BDEB9F00555BDB /* Main.storyboard */,
+				6581F91023C1092A00621E13 /* Merriweather-Regular.otf */,
+				658D315B23BE005700555BDB /* SourceColorizer.swift */,
+				6581F91223C12C1400621E13 /* Editor.swift */,
+				658D316123BE15EB00555BDB /* Styles.swift */,
+				658D315F23BE0B4D00555BDB /* Util.swift */,
+				658D313A23BDEB9E00555BDB /* ViewController.swift */,
 			);
 			path = chordeditor;
 			sourceTree = "<group>";
@@ -93,9 +127,17 @@
 			isa = PBXGroup;
 			children = (
 				658D314D23BDEBA000555BDB /* chordeditorTests.swift */,
+				65B2DB8223C0A39E0099F617 /* UtilTest.swift */,
 				658D314F23BDEBA000555BDB /* Info.plist */,
 			);
 			path = chordeditorTests;
+			sourceTree = "<group>";
+		};
+		658D315823BDF2DC00555BDB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -108,6 +150,7 @@
 				658D313123BDEB9E00555BDB /* Sources */,
 				658D313223BDEB9E00555BDB /* Frameworks */,
 				658D313323BDEB9E00555BDB /* Resources */,
+				6581F90B23C1086600621E13 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -200,6 +243,11 @@
 			files = (
 				658D313B23BDEB9E00555BDB /* ViewController.swift in Sources */,
 				658D313923BDEB9E00555BDB /* AppDelegate.swift in Sources */,
+				658D316023BE0B4D00555BDB /* Util.swift in Sources */,
+				658D316223BE15EB00555BDB /* Styles.swift in Sources */,
+				658D316423BE3E5900555BDB /* AutoComplete.swift in Sources */,
+				658D315C23BE005700555BDB /* SourceColorizer.swift in Sources */,
+				6581F91323C12C1400621E13 /* Editor.swift in Sources */,
 				658D313D23BDEB9E00555BDB /* Document.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				658D314E23BDEBA000555BDB /* chordeditorTests.swift in Sources */,
+				65B2DB8323C0A39E0099F617 /* UtilTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,6 +287,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -284,7 +334,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -298,6 +348,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -338,7 +389,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
