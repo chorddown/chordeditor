@@ -4,6 +4,7 @@ private let pink = #colorLiteral(red: 1, green: 0.1764705882, blue: 0.3333333333
 private let blue = #colorLiteral(red: 0, green: 0.4078431373, blue: 0.8549019608, alpha: 1)
 private let green = NSColor("239b32")
 private let greenDark = NSColor("187123")
+private let gray = NSColor("cccccc")
 private let grayDark = NSColor("8d8d88")
 
 private let fcGreen = EditorStyle(key: NSAttributedString.Key.foregroundColor, value: green)
@@ -85,58 +86,83 @@ class Styles {
         if let font = NSFont(name: "Merriweather-Regular", size: size) {
             return font
         } else {
-            fatalError("[ERROR] Font not found")
+            fatalError("[ERROR] Font 'Merriweather-Regular' not found")
         }
     }
+
+    static func defaultMonospacedFont(_ size: CGFloat = 14) -> NSFont {
+        if #available(OSX 10.15, *) {
+            return NSFont.monospacedSystemFont(ofSize: size, weight: NSFont.Weight.regular)
+        } else {
+            if let font = NSFont(name: "Menlo", size: size) {
+                return font
+            } else {
+                fatalError("[ERROR] Font 'Menlo' not found")
+            }
+        }
+    }
+
+    static func patternToStyleMap() -> [String: [EditorStyle]] {
+        return [
+            /// # Character styles
+
+            /// Chord
+            #"\[([^\]]*)\]"#: [
+                fcGreen,
+            ],
+
+            /// Code
+            #"`.*`"#: [
+                EditorStyle(key: NSAttributedString.Key.foregroundColor, value: NSColor.systemGray),
+                EditorStyle(key: NSAttributedString.Key.font, value: defaultMonospacedFont()),
+            ],
+
+            /// # Block styles
+
+            /// Comment
+            #"^>.*$"#: [
+                EditorStyle(key: NSAttributedString.Key.paragraphStyle, value: Styles.commentParagraphStyle()),
+                fcGrayDark,
+                defaultFontStyle(24),
+            ],
+
+            /// H1
+            #"^#[^#].*$"#: [
+                EditorStyle(key: NSAttributedString.Key.paragraphStyle, value: Styles.headerParagraphStyle()),
+                defaultFontStyle(32),
+                fcGrayDark,
+            ],
+
+            /// H2
+            #"^##[^#].*$"#: [
+                EditorStyle(key: NSAttributedString.Key.paragraphStyle, value: Styles.headerParagraphStyle()),
+                defaultFontStyle(24),
+            ],
+
+            /// Chorus
+            #"^##\s?!.*$"#: [
+                EditorStyle(key: NSAttributedString.Key.paragraphStyle, value: Styles.headerParagraphStyle()),
+                defaultFontStyle(24),
+                fcGreen,
+            ],
+
+            /// Bridge
+            #"^##\s?-.*$"#: [
+                EditorStyle(key: NSAttributedString.Key.paragraphStyle, value: Styles.headerParagraphStyle()),
+                defaultFontStyle(24),
+                EditorStyle(key: NSAttributedString.Key.foregroundColor, value: greenDark),
+            ],
+
+            /// H3
+            #"^###[^#].*$"#: [
+                EditorStyle(key: NSAttributedString.Key.paragraphStyle, value: Styles.headerParagraphStyle()),
+                defaultFontStyle(20),
+            ],
+
+            /// Meta
+            #"^\w+:\s*.*"#: [
+                EditorStyle(key: NSAttributedString.Key.foregroundColor, value: blue),
+            ],
+        ]
+    }
 }
-
-let patternToStyleMap: [String: [EditorStyle]] = [
-    /// Chord
-    #"\[([^\]]*)\]"#: [
-        fcGreen,
-    ],
-
-    /// Comment
-    #"^>.*"#: [
-        EditorStyle(key: NSAttributedString.Key.paragraphStyle, value: Styles.commentParagraphStyle()),
-        fcGrayDark,
-    ],
-
-    /// H1
-    #"^#[^#].*"#: [
-        EditorStyle(key: NSAttributedString.Key.paragraphStyle, value: Styles.headerParagraphStyle()),
-        defaultFontStyle(32),
-        fcGrayDark,
-    ],
-
-    /// H2
-    #"^##[^#].*"#: [
-        EditorStyle(key: NSAttributedString.Key.paragraphStyle, value: Styles.headerParagraphStyle()),
-        defaultFontStyle(24),
-    ],
-
-    /// Refrain
-    #"^##\s?!.*"#: [
-        EditorStyle(key: NSAttributedString.Key.paragraphStyle, value: Styles.headerParagraphStyle()),
-        defaultFontStyle(24),
-        fcGreen,
-    ],
-
-    /// Bridge
-    #"^##\s?-.*"#: [
-        EditorStyle(key: NSAttributedString.Key.paragraphStyle, value: Styles.headerParagraphStyle()),
-        defaultFontStyle(24),
-        EditorStyle(key: NSAttributedString.Key.foregroundColor, value: greenDark),
-    ],
-
-    /// H3
-    #"^###[^#].*"#: [
-        EditorStyle(key: NSAttributedString.Key.paragraphStyle, value: Styles.headerParagraphStyle()),
-        defaultFontStyle(20),
-    ],
-
-    /// Meta
-    #"^\w+:\s*.*"#: [
-        EditorStyle(key: NSAttributedString.Key.foregroundColor, value: blue),
-    ],
-]

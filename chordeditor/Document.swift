@@ -1,5 +1,9 @@
 import Cocoa
 
+func getDefaultDocumentContent () -> String {
+     return NSLocalizedString("chorddown.defaultContent", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+}
+
 class Document: NSDocument {
     var source: String?
     var viewController: ViewController? {
@@ -9,6 +13,12 @@ class Document: NSDocument {
     override init() {
         super.init()
         // Add your subclass-specific initialization here.
+    }
+
+    convenience init(type typeName: String) throws {
+        self.init()
+        fileType = typeName
+        source = getDefaultDocumentContent()
     }
 
     override class var autosavesInPlace: Bool {

@@ -12,7 +12,7 @@ class SourceColorizer {
     func colorize(subject: NSMutableAttributedString, inRange _: NSRange?) {
         let completeTextRange = NSRange(location: 0, length: subject.length)
         setStyles(subject, Styles.defaultStyles(), completeTextRange)
-        for (regex, styles) in patternToStyleMap {
+        for (regex, styles) in Styles.patternToStyleMap() {
             _ = colorizeByRegex(subject: subject, range: completeTextRange, regex: regex, styles: styles)
         }
     }

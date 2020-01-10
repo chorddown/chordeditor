@@ -1,0 +1,18 @@
+"chorddown.defaultContent" = "# Title
+Composer: The one who wrote the song
+Key: A
+
+## Nice Verse 1
+[A]The verse has the name 'Nice Verse 1'
+and starts with an A chord.
+It can [D]have as many [E]lines as
+[Bbmaj7]needed
+
+##! My Chorus
+[F]The chorus 'My Chorus' has a `!` in it's
+title so the system now's this is the
+start of a chorus
+
+##- A nice Bridge
+The bridge is like a chorus but starts with `-`
+";
