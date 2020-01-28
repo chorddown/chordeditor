@@ -160,7 +160,7 @@ class Styles {
             ],
 
             /// Meta
-            #"^\w+:\s*.*"#: [
+            #"^[\w\s-]+:\s*.*"#: [
                 EditorStyle(key: NSAttributedString.Key.foregroundColor, value: blue),
             ],
         ]

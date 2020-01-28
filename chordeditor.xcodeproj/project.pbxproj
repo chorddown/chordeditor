@@ -111,18 +111,14 @@
 			isa = PBXGroup;
 			children = (
 				658D313823BDEB9E00555BDB /* AppDelegate.swift */,
-				658D313E23BDEB9F00555BDB /* Assets.xcassets */,
 				658D316323BE3E5900555BDB /* AutoComplete.swift */,
-				658D314423BDEBA000555BDB /* chordeditor.entitlements */,
 				658D313C23BDEB9E00555BDB /* Document.swift */,
-				658D314323BDEB9F00555BDB /* Info.plist */,
-				658D314023BDEB9F00555BDB /* Main.storyboard */,
-				6581F91023C1092A00621E13 /* Merriweather-Regular.otf */,
-				658D315B23BE005700555BDB /* SourceColorizer.swift */,
 				6581F91223C12C1400621E13 /* Editor.swift */,
+				658D314023BDEB9F00555BDB /* Main.storyboard */,
+				65DBC1B023C9DDB900479443 /* Resources */,
+				658D315B23BE005700555BDB /* SourceColorizer.swift */,
 				658D316123BE15EB00555BDB /* Styles.swift */,
 				658D315F23BE0B4D00555BDB /* Util.swift */,
-				65DBC18123C8DE1B00479443 /* Localizable.strings */,
 				658D313A23BDEB9E00555BDB /* ViewController.swift */,
 			);
 			path = chordeditor;
@@ -143,6 +139,18 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		65DBC1B023C9DDB900479443 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				658D314323BDEB9F00555BDB /* Info.plist */,
+				658D313E23BDEB9F00555BDB /* Assets.xcassets */,
+				658D314423BDEBA000555BDB /* chordeditor.entitlements */,
+				65DBC18123C8DE1B00479443 /* Localizable.strings */,
+				6581F91023C1092A00621E13 /* Merriweather-Regular.otf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

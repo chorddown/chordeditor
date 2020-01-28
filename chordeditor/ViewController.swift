@@ -6,14 +6,6 @@ class ViewController: NSViewController, NSTextStorageDelegate, NSTextViewDelegat
     let autoComplete = AutoComplete()
     let sourceColorizer = SourceColorizer()
     var colorizedText: NSAttributedString?
-    var locked: Bool = false
-    var selectedRange: NSRange?
-    var internalAutocompleteRequested = false
-    let throttler = Throttler(delay: 2, queue: .main)
-
-    func requestInternalAutocomplete() {
-        internalAutocompleteRequested = true
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,19 +26,10 @@ class ViewController: NSViewController, NSTextStorageDelegate, NSTextViewDelegat
     }
 
     override func textStorageDidProcessEditing(_: Notification) {
-        guard let textView = self.textView else {
-            return
-        }
-
         if #available(OSX 10.11, *) {
             /* noop */
         } else {
             colorizeText(nil)
-
-            if internalAutocompleteRequested {
-                autocompleteText(range: textView.selectedRange())
-                internalAutocompleteRequested = false
-            }
         }
     }
 
@@ -57,16 +40,6 @@ class ViewController: NSViewController, NSTextStorageDelegate, NSTextViewDelegat
                      range: NSRange, changeInLength delta: Int) {
         if delta != 0, editedMask.rawValue > 1 {
             colorizeText(range)
-        }
-    }
-
-    @available(OSX 10.11, *)
-    func textStorage(_: NSTextStorage, willProcessEditing editedMask: NSTextStorageEditActions, range editedRange: NSRange, changeInLength delta: Int) {
-        if delta != 0, editedMask.rawValue > 1 {
-            if internalAutocompleteRequested {
-                autocompleteText(range: editedRange)
-                internalAutocompleteRequested = false
-            }
         }
     }
 
@@ -87,31 +60,6 @@ class ViewController: NSViewController, NSTextStorageDelegate, NSTextViewDelegat
         colorizedText = sourceColorizer.colorize(string: textStorage.string, inRange: range)
 
         textStorage.setAttributedString(colorizedText!)
-    }
-
-    private func autocompleteText(range editedRange: NSRange) {
-        guard locked == false else {
-            return
-        }
-
-        guard let textView = self.textView else {
-            debugPrint("[ERROR] textView not defined")
-            return
-        }
-        guard let textStorage = textView.textStorage else {
-            debugPrint("[ERROR] textView.textStorage not defined")
-            return
-        }
-
-        locked = true
-
-        let originalText = textStorage.string
-        if let newText = autoComplete.autocomplete(text: originalText, editedRange: editedRange) {
-            colorizedText = sourceColorizer.colorize(string: newText, inRange: editedRange)
-            textStorage.setAttributedString(colorizedText!)
-        }
-
-        locked = false
     }
 
     private func resetEditor() {
