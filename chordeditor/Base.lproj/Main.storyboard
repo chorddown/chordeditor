@@ -449,17 +449,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" translatesAutoresizingMaskIntoConstraints="NO" id="zay-YN-izW">
-                                <rect key="frame" x="0.0" y="20" width="600" height="420"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="394"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="qkX-ll-u5A">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="420"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="394"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="bar" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" smartInsertDelete="YES" id="7zC-Iz-dj1" customClass="Editor" customModule="chordeditor" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="420"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="394"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="600" height="420"/>
+                                            <size key="minSize" width="600" height="394"/>
                                             <size key="maxSize" width="720" height="10000000"/>
                                             <attributedString key="textStorage">
                                                 <fragment>
@@ -478,11 +478,11 @@ CG</string>
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="4LK-7Z-WIe">
-                                    <rect key="frame" x="0.0" y="404" width="600" height="16"/>
+                                    <rect key="frame" x="0.0" y="378" width="600" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Ovv-HD-LR6">
-                                    <rect key="frame" x="584" y="0.0" width="16" height="420"/>
+                                    <rect key="frame" x="584" y="0.0" width="16" height="394"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -495,15 +495,27 @@ CG</string>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AWk-NS-mAv">
+                                <rect key="frame" x="402" y="418" width="196" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Chord insertion mode" bezelStyle="regularSquare" imagePosition="right" alignment="right" inset="2" id="kVy-l6-69i">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="changeChordInsertModeButton:" target="5gI-5U-AMq" id="6iK-UE-o0R"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="zay-YN-izW" firstAttribute="top" secondItem="ERx-hH-rdd" secondAttribute="top" id="0bn-aY-azx"/>
+                            <constraint firstItem="zay-YN-izW" firstAttribute="top" secondItem="ERx-hH-rdd" secondAttribute="top" constant="26" id="0bn-aY-azx"/>
                             <constraint firstAttribute="bottom" secondItem="zay-YN-izW" secondAttribute="bottom" constant="20" id="4s2-Zd-yDP"/>
                             <constraint firstAttribute="trailing" secondItem="zay-YN-izW" secondAttribute="trailing" id="nAK-GV-3qg"/>
                             <constraint firstItem="zay-YN-izW" firstAttribute="leading" secondItem="ERx-hH-rdd" secondAttribute="leading" id="nXl-sP-yXK"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="chordInsertModeButton" destination="AWk-NS-mAv" id="wf9-AX-lTv"/>
                         <outlet property="textView" destination="7zC-Iz-dj1" id="cG5-hO-uLS"/>
                     </connections>
                 </viewController>

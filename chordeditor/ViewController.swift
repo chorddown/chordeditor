@@ -1,7 +1,8 @@
 import Cocoa
 
 class ViewController: NSViewController, NSTextStorageDelegate, NSTextViewDelegate {
-    @IBOutlet var textView: NSTextView?
+    @IBOutlet var textView: Editor?
+    @IBOutlet var chordInsertModeButton: NSButton?
 
     let autoComplete = AutoComplete()
     let sourceColorizer = SourceColorizer()
@@ -23,6 +24,14 @@ class ViewController: NSViewController, NSTextStorageDelegate, NSTextViewDelegat
         didSet {
             // Update the view, if already loaded.
         }
+    }
+
+    @IBAction func changeChordInsertModeButton(_ sender: NSButton) {
+        let chordInsertModeActive = sender.state == NSControl.StateValue.on
+        dump(chordInsertModeActive
+            ? "Chord Insert Mode is ON"
+            : "Chord Insert Mode is OFF")
+        (textView! as Editor).chordInsertModeActive = chordInsertModeActive
     }
 
     override func textStorageDidProcessEditing(_: Notification) {

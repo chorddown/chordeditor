@@ -1,7 +1,7 @@
 import Cocoa
 
-func getDefaultDocumentContent () -> String {
-     return NSLocalizedString("chorddown.defaultContent", tableName: nil, bundle: Bundle.main, value: "", comment: "")
+func getDefaultDocumentContent() -> String {
+    return NSLocalizedString("chorddown.defaultContent", tableName: nil, bundle: Bundle.main, value: "", comment: "")
 }
 
 class Document: NSDocument {
