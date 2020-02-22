@@ -2,17 +2,17 @@
 Composer: Der Komponist
 Key: A
 
-## Toller Vers 1
+## Vers 1
 [A]Der Vers hat den Namen 'Toller Vers 1'
 und beginnt mit einem A Chord.
 Er kann so [D]viele [E]Zeilen haben wie
 [Bbmaj7]nötig.
 
-##! Mein Refrain
+##! Refrain
 [F]Der Chorus 'Mein Refrain' hat ein `!` im
 Titel damit das System weiss, dass es
 der Start eines Refrain ist.
 
-##- Die Bridge
+##- Bridge
 Die Bridge verhält sich wie ein Chorus, aber beginnt mit `-`
 ";
