@@ -34,10 +34,11 @@ class Editor: NSTextView {
                 insertClosing(insertString: insertString, closing: "}")
             } else if insertString.hasPrefix("[") {
                 insertClosing(insertString: insertString, closing: "]")
-            } else if chordInsertModeActive != nil, chordInsertModeActive == true {
-                let sectionLength = 100
+            } else if chordInsertModeActive == true {
+                var sectionLength = 100
                 var location = selectedRange.location
                 if location < sectionLength {
+                    sectionLength = location
                     location = 0
                 } else {
                     location -= sectionLength
@@ -59,6 +60,6 @@ class Editor: NSTextView {
     func insertClosing(insertString: String, closing: String) {
         super.insertText(insertString)
         super.insertText(closing)
-        setSelectedRange(NSMakeRange(selectedRange.location, 0))
+        setSelectedRange(NSMakeRange(selectedRange.location - 1, 0))
     }
 }
