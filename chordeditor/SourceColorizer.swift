@@ -26,7 +26,7 @@ class SourceColorizer {
         do {
             let regex = try NSRegularExpression(
                 pattern: regex,
-                options: [NSRegularExpression.Options.anchorsMatchLines]
+                options: [NSRegularExpression.Options.anchorsMatchLines, NSRegularExpression.Options.caseInsensitive]
             )
 
             regex.enumerateMatches(in: subject.string, options: [], range: range) { match, _, _ in

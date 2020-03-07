@@ -160,7 +160,7 @@ class Styles {
             ],
 
             /// Meta
-            #"^[\w\s-]+:\s*.*"#: [
+            #"^(artist|composer|lyricist|copyright|album|year|key|time|tempo|duration|capo|bnotation|b_notation|b notation|b-notation):\s*.*"#: [
                 EditorStyle(key: NSAttributedString.Key.foregroundColor, value: blue),
             ],
         ]
