@@ -1,5 +1,18 @@
 import AppKit
 
+let wrappingStrings = [
+    "(": ")",
+    "[": "]",
+    "{": "}",
+    "\"": "\"",
+    "'": "'",
+    "`": "`",
+]
+
+func capitalizingFirstLetter(_ text: String) -> String {
+    return text.prefix(1).uppercased() + text.lowercased().dropFirst()
+}
+
 func shouldWrapText(text: String, insertString: String) -> Bool {
     if insertString.range(of: #"^[:alnum:]+$"#, options: .regularExpression) == nil {
         return false
@@ -20,6 +33,7 @@ func shouldWrapText(text: String, insertString: String) -> Bool {
 
 class Editor: NSTextView {
     var chordInsertModeActive: Bool?
+    var chordInsertUpperCaseFirst: Bool = true
 
     override func insertText(_ insertString: Any) {
         if let insertString = insertString as? String {
@@ -28,13 +42,11 @@ class Editor: NSTextView {
                 return
             }
 
-            if insertString.hasPrefix("(") {
-                insertClosing(insertString: insertString, closing: ")")
-            } else if insertString.hasPrefix("{") {
-                insertClosing(insertString: insertString, closing: "}")
-            } else if insertString.hasPrefix("[") {
-                insertClosing(insertString: insertString, closing: "]")
-            } else if chordInsertModeActive == true {
+            let didInsertClosing = insertClosingIfApplicable(insertString: insertString)
+            if didInsertClosing {
+                return
+            }
+            if chordInsertModeActive == true {
                 var sectionLength = 100
                 var location = selectedRange.location
                 if location < sectionLength {
@@ -45,7 +57,11 @@ class Editor: NSTextView {
                 }
                 let lastPortion = substring(string, range: NSMakeRange(location, sectionLength))
                 if shouldWrapText(text: lastPortion, insertString: insertString) {
-                    super.insertText("[" + insertString + "]")
+                    if chordInsertUpperCaseFirst == true {
+                        super.insertText("[" + capitalizingFirstLetter(insertString) + "]")
+                    } else {
+                        super.insertText("[" + insertString + "]")
+                    }
                     setSelectedRange(NSMakeRange(selectedRange.location - 1, 0))
                 } else {
                     super.insertText(insertString)
@@ -61,5 +77,15 @@ class Editor: NSTextView {
         super.insertText(insertString)
         super.insertText(closing)
         setSelectedRange(NSMakeRange(selectedRange.location - 1, 0))
+    }
+
+    func insertClosingIfApplicable(insertString: String) -> Bool {
+        for (key, closing) in wrappingStrings {
+            if insertString.hasPrefix(key) {
+                insertClosing(insertString: insertString, closing: closing)
+                return true
+            }
+        }
+        return false
     }
 }

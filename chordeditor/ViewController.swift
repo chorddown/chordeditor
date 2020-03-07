@@ -3,6 +3,7 @@ import Cocoa
 class ViewController: NSViewController, NSTextStorageDelegate, NSTextViewDelegate {
     @IBOutlet var textView: Editor?
     @IBOutlet var chordInsertModeButton: NSButton?
+    @IBOutlet var chordInsertUpperCaseFirstButton: NSButton?
 
     let autoComplete = AutoComplete()
     let sourceColorizer = SourceColorizer()
@@ -18,6 +19,7 @@ class ViewController: NSViewController, NSTextStorageDelegate, NSTextViewDelegat
         if let document = view.window?.windowController?.document as? Document {
             textView?.textStorage?.setAttributedString(getAttributedString(document))
         }
+        self.chordInsertUpperCaseFirstButton?.isEnabled = false
     }
 
     override var representedObject: Any? {
@@ -32,8 +34,18 @@ class ViewController: NSViewController, NSTextStorageDelegate, NSTextViewDelegat
             ? "Chord Insert Mode is ON"
             : "Chord Insert Mode is OFF")
         (textView! as Editor).chordInsertModeActive = chordInsertModeActive
+        self.chordInsertUpperCaseFirstButton?.isEnabled = chordInsertModeActive
+    }
+    
+    @IBAction func changeChordInsertUpperCaseFirstButton(_ sender: NSButton) {
+        let chordInsertUpperCaseFirstActive = sender.state == NSControl.StateValue.on
+        dump(chordInsertUpperCaseFirstActive
+            ? "Chord Insert Mode make first char uppercase is ON"
+            : "Chord Insert Mode make first char uppercase is OFF")
+        (textView! as Editor).chordInsertUpperCaseFirst = chordInsertUpperCaseFirstActive
     }
 
+    
     override func textStorageDidProcessEditing(_: Notification) {
         if #available(OSX 10.11, *) {
             /* noop */
