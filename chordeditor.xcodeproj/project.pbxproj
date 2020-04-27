@@ -49,7 +49,7 @@
 /* Begin PBXFileReference section */
 		6581F91023C1092A00621E13 /* Merriweather-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Merriweather-Regular.otf"; sourceTree = "<group>"; };
 		6581F91223C12C1400621E13 /* Editor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Editor.swift; sourceTree = "<group>"; };
-		658D313523BDEB9E00555BDB /* chordeditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chordeditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		658D313523BDEB9E00555BDB /* Chordeditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chordeditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		658D313823BDEB9E00555BDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		658D313A23BDEB9E00555BDB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		658D313C23BDEB9E00555BDB /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 		658D313623BDEB9E00555BDB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				658D313523BDEB9E00555BDB /* chordeditor.app */,
+				658D313523BDEB9E00555BDB /* Chordeditor.app */,
 				658D314923BDEBA000555BDB /* chordeditorTests.xctest */,
 			);
 			name = Products;
@@ -156,9 +156,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		658D313423BDEB9E00555BDB /* chordeditor */ = {
+		658D313423BDEB9E00555BDB /* Chordeditor */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 658D315223BDEBA000555BDB /* Build configuration list for PBXNativeTarget "chordeditor" */;
+			buildConfigurationList = 658D315223BDEBA000555BDB /* Build configuration list for PBXNativeTarget "Chordeditor" */;
 			buildPhases = (
 				658D313123BDEB9E00555BDB /* Sources */,
 				658D313223BDEB9E00555BDB /* Frameworks */,
@@ -169,9 +169,9 @@
 			);
 			dependencies = (
 			);
-			name = chordeditor;
+			name = Chordeditor;
 			productName = chordeditor;
-			productReference = 658D313523BDEB9E00555BDB /* chordeditor.app */;
+			productReference = 658D313523BDEB9E00555BDB /* Chordeditor.app */;
 			productType = "com.apple.product-type.application";
 		};
 		658D314823BDEBA000555BDB /* chordeditorTests */ = {
@@ -225,7 +225,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				658D313423BDEB9E00555BDB /* chordeditor */,
+				658D313423BDEB9E00555BDB /* Chordeditor */,
 				658D314823BDEBA000555BDB /* chordeditorTests */,
 			);
 		};
@@ -281,7 +281,7 @@
 /* Begin PBXTargetDependency section */
 		658D314B23BDEBA000555BDB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 658D313423BDEB9E00555BDB /* chordeditor */;
+			target = 658D313423BDEB9E00555BDB /* Chordeditor */;
 			targetProxy = 658D314A23BDEBA000555BDB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -515,7 +515,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		658D315223BDEBA000555BDB /* Build configuration list for PBXNativeTarget "chordeditor" */ = {
+		658D315223BDEBA000555BDB /* Build configuration list for PBXNativeTarget "Chordeditor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				658D315323BDEBA000555BDB /* Debug */,
