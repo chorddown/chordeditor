@@ -13,7 +13,7 @@ class SourceColorizer {
         let completeTextRange = NSRange(location: 0, length: subject.length)
         setStyles(subject, Styles.defaultStyles(), completeTextRange)
         for (regex, styles) in Styles.patternToStyleMap() {
-            _ = colorizeByRegex(subject: subject, range: completeTextRange, regex: regex, styles: styles)
+            colorizeByRegex(subject: subject, range: completeTextRange, regex: regex, styles: styles)
         }
     }
 
