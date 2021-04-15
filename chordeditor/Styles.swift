@@ -176,7 +176,7 @@ class Styles {
     capo        |
     subtitle    |
     alternative-title   |   (alternative\stitle)    |
-    original-title      |   (original title)        |   originaltitle       |
+    original-title      |   (original\stitle)       |   originaltitle       |
     bnotation           |   b_notation              |   (b\snotation)       |   b-notation  |
     (ccli\ssong\s.)     |   (ccli\ssong)            |   (ccli\ssong\sid)
 ):\s*
