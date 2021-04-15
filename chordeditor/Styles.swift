@@ -160,7 +160,28 @@ class Styles {
             ],
 
             /// Meta
-            #"^(artist|composer|lyricist|copyright|album|year|key|time|tempo|duration|capo|bnotation|b_notation|b notation|b-notation|subtitle|alternative-title|alternative title|ccli song #|ccli song|ccli song id):\s*.*"#: [
+#"""
+(?x)
+^(?<keyword>
+    artist      |
+    composer    |
+    lyricist    |
+    copyright   |
+    album       |
+    year        |
+    key         |
+    time        |
+    tempo       |
+    duration    |
+    capo        |
+    subtitle    |
+    alternative-title   |   (alternative\stitle)    |
+    original-title      |   (original title)        |   originaltitle       |
+    bnotation           |   b_notation              |   (b\snotation)       |   b-notation  |
+    (ccli\ssong\s.)     |   (ccli\ssong)            |   (ccli\ssong\sid)
+):\s*
+(?<value>.*)$
+"""#: [
                 EditorStyle(key: NSAttributedString.Key.foregroundColor, value: blue),
             ],
         ]
