@@ -7,9 +7,9 @@ final class SourceColorizerTests: XCTestCase {
     func testHasUsers() {
         let colorizer = SourceColorizer()
         colorizer.colorize(string: """
-                                                                                                                                                                                                                                                                                                                                                                                                                # Überschrift
+                                                                                                                                                                                                                                                                                                                                                                                                                        # Überschrift
 
-                                                                                                                                                                                                                                                                                                                                                                                                                [Am]Das ist mein [D]Test
-""")
+                                                                                                                                                                                                                                                                                                                                                                                                                        [Am]Das ist mein [D]Test
+        """)
     }
 }

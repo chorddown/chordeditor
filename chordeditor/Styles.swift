@@ -39,8 +39,8 @@ class Styles {
     static func defaultStyles() -> [EditorStyle] {
         return [
             defaultFontStyle(),
-            EditorStyle(key: NSAttributedString.Key.foregroundColor, value: self.defaultForegroundColor()),
-            EditorStyle(key: NSAttributedString.Key.paragraphStyle, value: self.defaultParagraphStyle()),
+            EditorStyle(key: NSAttributedString.Key.foregroundColor, value: defaultForegroundColor()),
+            EditorStyle(key: NSAttributedString.Key.paragraphStyle, value: defaultParagraphStyle()),
         ]
     }
 
@@ -160,28 +160,28 @@ class Styles {
             ],
 
             /// Meta
-#"""
-(?x)
-^(?<keyword>
-    artist      |
-    composer    |
-    lyricist    |
-    copyright   |
-    album       |
-    year        |
-    key         |
-    time        |
-    tempo       |
-    duration    |
-    capo        |
-    subtitle    |
-    alternative-title   |   (alternative\stitle)    |
-    original-title      |   (original\stitle)       |   originaltitle       |
-    bnotation           |   b_notation              |   (b\snotation)       |   b-notation  |
-    (ccli\ssong\s.)     |   (ccli\ssong)            |   (ccli\ssong\sid)
-):\s*
-(?<value>.*)$
-"""#: [
+            #"""
+            (?x)
+            ^(?<keyword>
+                artist      |
+                composer    |
+                lyricist    |
+                copyright   |
+                album       |
+                year        |
+                key         |
+                time        |
+                tempo       |
+                duration    |
+                capo        |
+                subtitle    |
+                alternative-title   |   (alternative\stitle)    |
+                original-title      |   (original\stitle)       |   originaltitle       |
+                bnotation           |   b_notation              |   (b\snotation)       |   b-notation  |
+                (ccli\ssong\s.)     |   (ccli\ssong)            |   (ccli\ssong\sid)
+            ):\s*
+            (?<value>.*)$
+            """#: [
                 EditorStyle(key: NSAttributedString.Key.foregroundColor, value: blue),
             ],
         ]

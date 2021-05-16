@@ -3,7 +3,8 @@ import Cocoa
 class ViewController: NSViewController, NSTextStorageDelegate, NSTextViewDelegate {
     @IBOutlet var textView: Editor?
     @IBOutlet var chordInsertModeButton: NSButton?
-    @IBOutlet var chordInsertUpperCaseFirstButton: NSButton?
+    @IBOutlet var chordFormattingButton: NSButton?
+    @IBOutlet var statusView: NSTextField?
 
     let autoComplete = AutoComplete()
     let sourceColorizer = SourceColorizer()
@@ -19,7 +20,10 @@ class ViewController: NSViewController, NSTextStorageDelegate, NSTextViewDelegat
         if let document = view.window?.windowController?.document as? Document {
             textView?.textStorage?.setAttributedString(getAttributedString(document))
         }
-        self.chordInsertUpperCaseFirstButton?.isEnabled = false
+        chordFormattingButton?.isEnabled = false
+
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidChangeChordInsertMode(_:)), name: .didChangeChordInsertMode, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidChangeChordFormatting(_:)), name: .didChangeChordFormatting, object: nil)
     }
 
     override var representedObject: Any? {
@@ -29,23 +33,45 @@ class ViewController: NSViewController, NSTextStorageDelegate, NSTextViewDelegat
     }
 
     @IBAction func changeChordInsertModeButton(_ sender: NSButton) {
-        let chordInsertModeActive = sender.state == NSControl.StateValue.on
-        dump(chordInsertModeActive
+        let isActive = sender.state == NSControl.StateValue.on
+        dump(isActive
             ? "Chord Insert Mode is ON"
             : "Chord Insert Mode is OFF")
-        (textView! as Editor).chordInsertModeActive = chordInsertModeActive
-        self.chordInsertUpperCaseFirstButton?.isEnabled = chordInsertModeActive
-    }
-    
-    @IBAction func changeChordInsertUpperCaseFirstButton(_ sender: NSButton) {
-        let chordInsertUpperCaseFirstActive = sender.state == NSControl.StateValue.on
-        dump(chordInsertUpperCaseFirstActive
-            ? "Chord Insert Mode make first char uppercase is ON"
-            : "Chord Insert Mode make first char uppercase is OFF")
-        (textView! as Editor).chordInsertUpperCaseFirst = chordInsertUpperCaseFirstActive
+        getDelegate().setChordInsertMode(isActive)
     }
 
-    
+    @IBAction func changeChordInsertUpperCaseFirstButton(_ sender: NSButton) {
+        let isActive = sender.state == NSControl.StateValue.on
+        dump(isActive
+            ? "Chord Formatting is ON"
+            : "Chord Formatting is OFF")
+        getDelegate().setChordFormatting(isActive)
+    }
+
+    @objc func onDidChangeChordInsertMode(_ notification: Notification) {
+        guard let userInfo = notification.userInfo else {
+            return
+        }
+        guard let value = userInfo["value"] else {
+            return
+        }
+        let isEnabled = value as! Bool
+        chordInsertModeButton?.state = isEnabled ? NSControl.StateValue.on : NSControl.StateValue.off
+        chordFormattingButton?.isEnabled = isEnabled
+        updateStatusView()
+    }
+
+    @objc func onDidChangeChordFormatting(_ notification: Notification) {
+        guard let userInfo = notification.userInfo else {
+            return
+        }
+        guard let value = userInfo["value"] else {
+            return
+        }
+        chordFormattingButton?.state = value as! Bool ? NSControl.StateValue.on : NSControl.StateValue.off
+        updateStatusView()
+    }
+
     override func textStorageDidProcessEditing(_: Notification) {
         if #available(OSX 10.11, *) {
             /* noop */
@@ -64,7 +90,7 @@ class ViewController: NSViewController, NSTextStorageDelegate, NSTextViewDelegat
         }
     }
 
-    func textView(_ textView: NSTextView, completions words: [String], forPartialWordRange charRange: NSRange, indexOfSelectedItem _: UnsafeMutablePointer<Int>?) -> [String] {
+    func textView(_ textView: NSTextView, completions _: [String], forPartialWordRange charRange: NSRange, indexOfSelectedItem _: UnsafeMutablePointer<Int>?) -> [String] {
         return autoComplete.getSuggestions(text: textView.string, editedRange: charRange)
     }
 
@@ -114,11 +140,24 @@ class ViewController: NSViewController, NSTextStorageDelegate, NSTextViewDelegat
         }
     }
 
+    private func updateStatusView() {
+        let standard = "Chord Insert Mode: "
+        if getDelegate().chordInsertMode == false {
+            statusView!.stringValue = standard + "Off"
+        } else {
+            statusView!.stringValue = standard + "On " + (getDelegate().chordFormatting ? "w/ formatting" : "wo/ formatting")
+        }
+    }
+
     private func getAttributedString(_ document: Document) -> NSAttributedString {
         if let source = document.source {
             return SourceColorizer().colorize(string: source, inRange: nil)
         } else {
             return NSAttributedString(string: "")
         }
+    }
+
+    private func getDelegate() -> AppDelegate {
+        return NSApplication.shared.delegate as! AppDelegate
     }
 }

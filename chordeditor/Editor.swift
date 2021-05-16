@@ -23,17 +23,24 @@ func shouldWrapText(text: String, insertString: String) -> Bool {
         return true
     }
 
-    let openingBracket: Range<String.Index> = text.range(of: "[", options: .backwards)!
-    if let closeingBracket: Range<String.Index> = text.range(of: "]", options: .backwards) {
-        return openingBracket.lowerBound < closeingBracket.lowerBound
+    // If there are opening and closing brackets in the text, check if the last opening braket has
+    // already been closed. If that is the case we should wrap the new character
+    let lastOpeningBracket: Range<String.Index> = text.range(of: "[", options: .backwards)!
+    if let lastClosingBracket: Range<String.Index> = text.range(of: "]", options: .backwards) {
+        return lastOpeningBracket.lowerBound < lastClosingBracket.lowerBound
     }
 
     return false
 }
 
 class Editor: NSTextView {
-    var chordInsertModeActive: Bool?
-    var chordInsertUpperCaseFirst: Bool = true
+    var chordInsertMode: Bool {
+        return getDelegate().chordInsertMode
+    }
+
+    var chordFormatting: Bool {
+        return getDelegate().chordFormatting
+    }
 
     override func insertText(_ insertString: Any) {
         if let insertString = insertString as? String {
@@ -46,18 +53,29 @@ class Editor: NSTextView {
             if didInsertClosing {
                 return
             }
-            if chordInsertModeActive == true {
-                var sectionLength = 100
-                var location = selectedRange.location
-                if location < sectionLength {
-                    sectionLength = location
-                    location = 0
+            if chordInsertMode == true {
+                var sampleLength = 100
+                let cursorPosition = selectedRange.location
+
+                var sampleStart: Int
+                if cursorPosition < sampleLength {
+                    // Get the portion from the file start up to the cursor position
+                    sampleLength = cursorPosition
+                    sampleStart = 0
                 } else {
-                    location -= sectionLength
+                    sampleStart = cursorPosition - sampleLength
                 }
-                let lastPortion = substring(string, range: NSMakeRange(location, sectionLength))
-                if shouldWrapText(text: lastPortion, insertString: insertString) {
-                    if chordInsertUpperCaseFirst == true {
+
+                var sampleEnd = min(sampleStart + sampleLength - 1, string.count)
+                if sampleEnd < 0 {
+                    sampleEnd = 0
+                }
+
+                let range = NSMakeRange(sampleStart, sampleEnd - sampleStart)
+                let sample = substring(string, range: range) + insertString
+
+                if shouldWrapText(text: sample, insertString: insertString) {
+                    if chordFormatting == true {
                         super.insertText("[" + capitalizingFirstLetter(insertString) + "]")
                     } else {
                         super.insertText("[" + insertString + "]")
@@ -87,5 +105,9 @@ class Editor: NSTextView {
             }
         }
         return false
+    }
+
+    private func getDelegate() -> AppDelegate {
+        return NSApplication.shared.delegate as! AppDelegate
     }
 }

@@ -335,6 +335,19 @@
                                                 </items>
                                             </menu>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="SWG-R8-awj"/>
+                                        <menuItem title="Enable Chord Insert Mode" keyEquivalent="c" id="gZp-7X-IiO">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="toggleChordInsertMode:" target="Ady-hI-5gd" id="7EX-ff-XjV"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Enable Chord Formatting" keyEquivalent="c" id="GjS-jH-cbZ">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="toggleChordFormatting:" target="Voe-Tx-rLC" id="9gS-on-709"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -413,7 +426,12 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="chordeditor" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Chordeditor" customModuleProvider="target">
+                    <connections>
+                        <outlet property="chordFormattingMenuItem" destination="GjS-jH-cbZ" id="8zO-jB-RL3"/>
+                        <outlet property="chordInsertModeMenuItem" destination="gZp-7X-IiO" id="KAX-PG-GuO"/>
+                    </connections>
+                </customObject>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -443,7 +461,7 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="5gI-5U-AMq" customClass="ViewController" customModule="chordeditor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5gI-5U-AMq" customClass="ViewController" customModule="Chordeditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="ERx-hH-rdd">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="440"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -454,7 +472,7 @@
                                     <rect key="frame" x="1" y="1" width="598" height="392"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="bar" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" smartInsertDelete="YES" id="7zC-Iz-dj1" customClass="Editor" customModule="chordeditor" customModuleProvider="target">
+                                        <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="bar" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" smartInsertDelete="YES" id="7zC-Iz-dj1" customClass="Editor" customModule="Chordeditor" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="598" height="392"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -517,6 +535,15 @@ CG</string>
                                     <action selector="changeChordInsertModeButton:" target="5gI-5U-AMq" id="bRW-Ys-ABb"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cCe-vx-8iJ">
+                                <rect key="frame" x="7" y="419" width="274" height="14"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="Chord Insert Mode status" id="We0-BC-TZd">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="zay-YN-izW" firstAttribute="top" secondItem="ERx-hH-rdd" secondAttribute="top" constant="26" id="0bn-aY-azx"/>
@@ -526,8 +553,9 @@ CG</string>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="chordInsertModeButton" destination="AWk-NS-mAv" id="wf9-AX-lTv"/>
-                        <outlet property="chordInsertUpperCaseFirstButton" destination="AWk-NS-mAv" id="fDo-F9-gQz"/>
+                        <outlet property="chordFormattingButton" destination="AWk-NS-mAv" id="yWf-bi-j06"/>
+                        <outlet property="chordInsertModeButton" destination="YE9-69-Un6" id="AbB-ae-MUO"/>
+                        <outlet property="statusView" destination="cCe-vx-8iJ" id="cJd-W7-E4r"/>
                         <outlet property="textView" destination="7zC-Iz-dj1" id="cG5-hO-uLS"/>
                     </connections>
                 </viewController>

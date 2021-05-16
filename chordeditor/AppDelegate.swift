@@ -1,10 +1,24 @@
 import Cocoa
 
-// TODO: Add font license https://github.com/EbenSorkin/Merriweather/blob/master/OFL.txt
+extension Notification.Name {
+    static let didChangeChordInsertMode = Notification.Name("didChangeChordInsertMode")
+    static let didChangeChordFormatting = Notification.Name("didChangeChordFormatting")
+}
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+    @IBOutlet var chordInsertModeMenuItem: NSMenuItem!
+    @IBOutlet var chordFormattingMenuItem: NSMenuItem!
+    public var chordInsertMode: Bool = false
+    public var chordFormatting: Bool = false
+
     func applicationDidFinishLaunching(_: Notification) {
         // Insert code here to initialize your application
+
+        chordInsertMode = false
+        chordFormatting = true
+        NotificationCenter.default.post(name: .didChangeChordInsertMode, object: nil, userInfo: ["value": chordInsertMode])
+        NotificationCenter.default.post(name: .didChangeChordFormatting, object: nil, userInfo: ["value": chordFormatting])
     }
 
     func applicationWillTerminate(_: Notification) {
@@ -31,5 +45,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 return true
             }
         }
+    }
+
+    @IBAction func toggleChordInsertMode(_: Any) {
+        setChordInsertMode(!chordInsertMode)
+    }
+
+    public func setChordInsertMode(_ chordInsertModeFlag: Bool) {
+        chordInsertMode = chordInsertModeFlag
+        NotificationCenter.default.post(name: .didChangeChordInsertMode, object: nil, userInfo: ["value": chordInsertModeFlag])
+        chordInsertModeMenuItem.title = chordInsertModeFlag ? "Disable Chord Insert Mode" : "Enable Chord Insert Mode"
+    }
+
+    @IBAction func toggleChordFormatting(_: Any) {
+        setChordFormatting(!chordFormatting)
+    }
+
+    public func setChordFormatting(_ chordFormattingFlag: Bool) {
+        chordFormatting = chordFormattingFlag
+        NotificationCenter.default.post(name: .didChangeChordFormatting, object: nil, userInfo: ["value": chordFormatting])
+        chordFormattingMenuItem.title = chordFormattingFlag ? "Disable Chord Formatting" : "Enable Chord Formatting"
     }
 }

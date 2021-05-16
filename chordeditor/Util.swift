@@ -103,7 +103,16 @@ func substring(_ str: String, from: UInt, length: UInt) -> String {
 }
 
 func substring(_ str: String, range: NSRange) -> String {
-    return substring(str, from: UInt(range.lowerBound), length: UInt(range.upperBound - range.lowerBound))
+    if range.length == 0 {
+        return ""
+    }
+    let start = str.index(str.startIndex, offsetBy: range.lowerBound)
+    let end = str.index(str.startIndex, offsetBy: range.upperBound)
+    let index_range = start ..< end
+
+    return String(str[index_range])
+
+    // return substring(str, from: UInt(range.lowerBound), length: UInt(range.upperBound - range.lowerBound))
 }
 
 func substring_start(_ str: String, _ to: Int) -> String {
