@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -535,15 +535,6 @@ CG</string>
                                     <action selector="changeChordInsertModeButton:" target="5gI-5U-AMq" id="bRW-Ys-ABb"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cCe-vx-8iJ">
-                                <rect key="frame" x="7" y="419" width="274" height="14"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="Chord Insert Mode status" id="We0-BC-TZd">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="zay-YN-izW" firstAttribute="top" secondItem="ERx-hH-rdd" secondAttribute="top" constant="26" id="0bn-aY-azx"/>
@@ -555,7 +546,6 @@ CG</string>
                     <connections>
                         <outlet property="chordFormattingButton" destination="AWk-NS-mAv" id="yWf-bi-j06"/>
                         <outlet property="chordInsertModeButton" destination="YE9-69-Un6" id="AbB-ae-MUO"/>
-                        <outlet property="statusView" destination="cCe-vx-8iJ" id="cJd-W7-E4r"/>
                         <outlet property="textView" destination="7zC-Iz-dj1" id="cG5-hO-uLS"/>
                     </connections>
                 </viewController>

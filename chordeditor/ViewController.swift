@@ -4,7 +4,6 @@ class ViewController: NSViewController, NSTextStorageDelegate, NSTextViewDelegat
     @IBOutlet var textView: Editor?
     @IBOutlet var chordInsertModeButton: NSButton?
     @IBOutlet var chordFormattingButton: NSButton?
-    @IBOutlet var statusView: NSTextField?
 
     let autoComplete = AutoComplete()
     let sourceColorizer = SourceColorizer()
@@ -58,7 +57,6 @@ class ViewController: NSViewController, NSTextStorageDelegate, NSTextViewDelegat
         let isEnabled = value as! Bool
         chordInsertModeButton?.state = isEnabled ? NSControl.StateValue.on : NSControl.StateValue.off
         chordFormattingButton?.isEnabled = isEnabled
-        updateStatusView()
     }
 
     @objc func onDidChangeChordFormatting(_ notification: Notification) {
@@ -69,7 +67,6 @@ class ViewController: NSViewController, NSTextStorageDelegate, NSTextViewDelegat
             return
         }
         chordFormattingButton?.state = value as! Bool ? NSControl.StateValue.on : NSControl.StateValue.off
-        updateStatusView()
     }
 
     override func textStorageDidProcessEditing(_: Notification) {
@@ -137,15 +134,6 @@ class ViewController: NSViewController, NSTextStorageDelegate, NSTextViewDelegat
             textView.insertionPointColor = Styles.defaultForegroundColor()
         } else {
             debugPrint("[ERROR] textView is not defined")
-        }
-    }
-
-    private func updateStatusView() {
-        let standard = "Chord Insert Mode: "
-        if getDelegate().chordInsertMode == false {
-            statusView!.stringValue = standard + "Off"
-        } else {
-            statusView!.stringValue = standard + "On " + (getDelegate().chordFormatting ? "w/ formatting" : "wo/ formatting")
         }
     }
 
