@@ -31,6 +31,16 @@ class ViewController: NSViewController, NSTextStorageDelegate, NSTextViewDelegat
         }
     }
 
+    @IBAction func showHelp(sender _: Any) {
+        let storyboard: NSStoryboard = NSStoryboard(name: "Main", bundle: nil)
+        let helpPopup = storyboard.instantiateController(withIdentifier: "helpPopup")
+
+        if let helpPopup = helpPopup as? HelpPopupViewController {
+//        helpPopup.preferredContentSize = CGSize(width: 300, height: 300)
+            presentAsSheet(helpPopup)
+        }
+    }
+
     @IBAction func changeChordInsertModeButton(_ sender: NSButton) {
         let isActive = sender.state == NSControl.StateValue.on
         dump(isActive

@@ -19,9 +19,11 @@
 		658D316023BE0B4D00555BDB /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658D315F23BE0B4D00555BDB /* Util.swift */; };
 		658D316223BE15EB00555BDB /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658D316123BE15EB00555BDB /* Styles.swift */; };
 		658D316423BE3E5900555BDB /* AutoComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658D316323BE3E5900555BDB /* AutoComplete.swift */; };
+		65ACD59B2668F66400C64200 /* ChordInsertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ACD59A2668F66400C64200 /* ChordInsertService.swift */; };
 		65B2DB8323C0A39E0099F617 /* UtilTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2DB8223C0A39E0099F617 /* UtilTest.swift */; };
 		65DBC17F23C8DE1B00479443 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 65DBC18123C8DE1B00479443 /* Localizable.strings */; };
 		65F4C79926519008001D6036 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 65F4C79826519008001D6036 /* Credits.rtf */; };
+		65FB336526697A63005F7450 /* HelpPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FB336426697A63005F7450 /* HelpPopupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,11 +67,13 @@
 		658D315F23BE0B4D00555BDB /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		658D316123BE15EB00555BDB /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		658D316323BE3E5900555BDB /* AutoComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoComplete.swift; sourceTree = "<group>"; };
+		65ACD59A2668F66400C64200 /* ChordInsertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordInsertService.swift; sourceTree = "<group>"; };
 		65B2DB8223C0A39E0099F617 /* UtilTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilTest.swift; sourceTree = "<group>"; };
 		65DBC17C23C8DCD600479443 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		65DBC18023C8DE1B00479443 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		65DBC18223C8DE2300479443 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		65F4C79826519008001D6036 /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		65FB336426697A63005F7450 /* HelpPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpPopupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,8 +118,10 @@
 			children = (
 				658D313823BDEB9E00555BDB /* AppDelegate.swift */,
 				658D316323BE3E5900555BDB /* AutoComplete.swift */,
+				65ACD59A2668F66400C64200 /* ChordInsertService.swift */,
 				658D313C23BDEB9E00555BDB /* Document.swift */,
 				6581F91223C12C1400621E13 /* Editor.swift */,
+				65FB336426697A63005F7450 /* HelpPopupViewController.swift */,
 				658D314023BDEB9F00555BDB /* Main.storyboard */,
 				65DBC1B023C9DDB900479443 /* Resources */,
 				658D315B23BE005700555BDB /* SourceColorizer.swift */,
@@ -260,9 +266,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65FB336526697A63005F7450 /* HelpPopupViewController.swift in Sources */,
 				658D313B23BDEB9E00555BDB /* ViewController.swift in Sources */,
 				658D313923BDEB9E00555BDB /* AppDelegate.swift in Sources */,
 				658D316023BE0B4D00555BDB /* Util.swift in Sources */,
+				65ACD59B2668F66400C64200 /* ChordInsertService.swift in Sources */,
 				658D316223BE15EB00555BDB /* Styles.swift in Sources */,
 				658D316423BE3E5900555BDB /* AutoComplete.swift in Sources */,
 				658D315C23BE005700555BDB /* SourceColorizer.swift in Sources */,
