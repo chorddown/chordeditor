@@ -1,7 +1,7 @@
 import Foundation
 
 func capitalizingFirstLetter(_ text: String) -> String {
-    return text.prefix(1).uppercased() + text.lowercased().dropFirst()
+    text.prefix(1).uppercased() + text.lowercased().dropFirst()
 }
 
 func shouldWrapText(text: String, insertString: String) -> Bool {
@@ -34,34 +34,30 @@ struct ChordInsertResult {
 /// - Parameter selectedRange: Currently selected text inside `string`
 /// - Parameter chordFormatting: Defines if the inserted chord string should be formatted
 func prepareInsertedChordString(currentText: String, insertChordString: String, selectedRange: NSRange, chordFormatting: Bool) -> ChordInsertResult {
-    var sampleLength = 100
-    let cursorPosition = selectedRange.location
-
-    var sampleStart: Int
-    if cursorPosition < sampleLength {
-        // Get the portion from the file start up to the cursor position
-        sampleLength = cursorPosition
-        sampleStart = 0
-    } else {
-        sampleStart = cursorPosition - sampleLength
-    }
-
-    var sampleEnd = min(sampleStart + sampleLength - 1, currentText.count)
-    if sampleEnd < 0 {
-        sampleEnd = 0
-    }
-
-    let range = NSMakeRange(sampleStart, sampleEnd - sampleStart)
-    let sample = substring(currentText, range: range) + insertChordString
+    let sample = getSample(currentText: currentText, insertChordString: insertChordString, selectedRange: selectedRange)
 
     if shouldWrapText(text: sample, insertString: insertChordString) {
-        let newRange = NSMakeRange(selectedRange.location - 1, 0)
+        let newRange = NSMakeRange(selectedRange.location + insertChordString.count + 1, 0)
         if chordFormatting == true {
             return ChordInsertResult(insertChordString: "[" + capitalizingFirstLetter(insertChordString) + "]", selectedRange: newRange)
         } else {
             return ChordInsertResult(insertChordString: "[" + insertChordString + "]", selectedRange: newRange)
         }
     } else {
-        return ChordInsertResult(insertChordString: insertChordString, selectedRange: selectedRange)
+        let newRange = NSMakeRange(selectedRange.location + insertChordString.count, 0)
+
+        return ChordInsertResult(insertChordString: insertChordString, selectedRange: newRange)
     }
+}
+
+private func getSample(currentText: String, insertChordString: String, selectedRange: NSRange) -> String {
+    let sampleLength = 10
+    let cursorPosition = selectedRange.location
+    let sampleStart = cursorPosition < sampleLength
+        ? 0 // Get the portion from the file start up to the cursor position
+        : cursorPosition - sampleLength
+
+    let range = NSMakeRange(sampleStart, min(sampleLength, cursorPosition))
+
+    return substring(currentText, range: range) + insertChordString
 }
