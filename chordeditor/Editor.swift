@@ -18,37 +18,35 @@ class Editor: NSTextView {
         return getDelegate().chordFormatting
     }
 
-    override func insertText(_ insertString: Any) {
+    override func insertText(_ insertString: Any, replacementRange: NSRange) {
         if let insertString = insertString as? String {
-            // if the insert string isn't one character in length, it cannot be a brace character
-            if insertString.count != 1 {
-                return
-            }
-
-            let didInsertClosing = insertClosingIfApplicable(insertString: insertString)
+            let didInsertClosing = insertClosingIfApplicable(insertString: insertString, replacementRange: replacementRange)
             if didInsertClosing {
                 return
             }
-            if chordInsertMode == true {
-                let result = prepareInsertedChordString(currentText: string, insertChordString: insertString, selectedRange: selectedRange, chordFormatting: chordFormatting)
-                setSelectedRange(result.selectedRange)
-                super.insertText(result.insertChordString)
-            } else {
-                super.insertText(insertString)
+
+            if chordInsertMode != true {
+                super.insertText(insertString, replacementRange: replacementRange)
+                return
             }
+
+            let selectedRange = selectedRanges.first!.rangeValue
+            let result = prepareInsertedChordString(currentText: string, insertChordString: insertString, selectedRange: selectedRange, chordFormatting: chordFormatting)
+            super.insertText(result.insertChordString, replacementRange: replacementRange)
+            setSelectedRange(result.selectedRange)
         }
     }
 
-    func insertClosing(insertString: String, closing: String) {
-        super.insertText(insertString)
-        super.insertText(closing)
+    func insertClosing(insertString: String, closing: String, replacementRange: NSRange) {
+        super.insertText(insertString, replacementRange: replacementRange)
+        super.insertText(closing, replacementRange: replacementRange)
         setSelectedRange(NSMakeRange(selectedRange.location - 1, 0))
     }
 
-    func insertClosingIfApplicable(insertString: String) -> Bool {
+    func insertClosingIfApplicable(insertString: String, replacementRange: NSRange) -> Bool {
         for (key, closing) in wrappingStrings {
             if insertString.hasPrefix(key) {
-                insertClosing(insertString: insertString, closing: closing)
+                insertClosing(insertString: insertString, closing: closing, replacementRange: replacementRange)
                 return true
             }
         }
