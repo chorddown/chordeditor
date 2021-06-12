@@ -106,6 +106,12 @@ func substring(_ str: String, range: NSRange) -> String {
     if range.length == 0 {
         return ""
     }
+
+    if str.count < range.lowerBound || str.count < range.upperBound {
+        print("Error: Failed to get range \(range) from string with count \(str.count)")
+        return ""
+    }
+
     let start = str.index(str.startIndex, offsetBy: range.lowerBound)
     let end = str.index(str.startIndex, offsetBy: range.upperBound)
     let index_range = start ..< end
