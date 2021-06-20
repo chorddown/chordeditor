@@ -1,4 +1,3 @@
 import Cocoa
 
-class HelpPopupViewController: NSViewController {
-}
+class HelpPopupViewController: NSViewController {}

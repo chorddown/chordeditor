@@ -17,11 +17,11 @@ class Editor: NSTextView {
     var chordFormatting: Bool {
         return getDelegate().chordFormatting
     }
-    
-    override func paste(_ : Any?) {
+
+    override func paste(_: Any?) {
         let pasteboard = NSPasteboard.general
         guard let pasteboardString = pasteboard.string(forType: .string) else { return }
-        
+
         // Remove carriage return from pasted strings
         let cleanString = String(pasteboardString.replacingOccurrences(of: "\r", with: ""))
         insertText(cleanString, replacementRange: NSMakeRange(NSNotFound, 0))

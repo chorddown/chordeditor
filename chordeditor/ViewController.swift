@@ -9,6 +9,11 @@ class ViewController: NSViewController, NSTextStorageDelegate, NSTextViewDelegat
     let sourceColorizer = SourceColorizer()
     var colorizedText: NSAttributedString?
 
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        DistributedNotificationCenter.default.addObserver(self, selector: #selector(interfaceModeChanged(sender:)), name: NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification"), object: nil)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         resetEditor()
@@ -98,7 +103,11 @@ class ViewController: NSViewController, NSTextStorageDelegate, NSTextViewDelegat
     }
 
     func textView(_ textView: NSTextView, completions _: [String], forPartialWordRange charRange: NSRange, indexOfSelectedItem _: UnsafeMutablePointer<Int>?) -> [String] {
-        return autoComplete.getSuggestions(text: textView.string, editedRange: charRange)
+        autoComplete.getSuggestions(text: textView.string, editedRange: charRange)
+    }
+
+    @objc func interfaceModeChanged(sender _: NSNotification) {
+        resetEditor()
     }
 
     private func colorizeText(_ range: NSRange?) {
@@ -156,6 +165,6 @@ class ViewController: NSViewController, NSTextStorageDelegate, NSTextViewDelegat
     }
 
     private func getDelegate() -> AppDelegate {
-        return NSApplication.shared.delegate as! AppDelegate
+        NSApplication.shared.delegate as! AppDelegate
     }
 }
